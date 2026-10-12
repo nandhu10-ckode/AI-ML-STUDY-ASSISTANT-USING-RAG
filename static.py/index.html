@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Study Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <h2>🤖 StudyMate AI</h2>
+            <p class="muted">YOUR STUDY WORKSPACE</p>
+            <div class="nav active">✦ Study Assistant</div>
+
+            <div class="side-info">
+                <h4>PDF-powered learning</h4>
+                <p>Ask questions from your AI/ML notes.</p>
+            </div>
+
+            <p class="side-bottom">● AI Assistant</p>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <span>Workspace / Study Assistant</span>
+                <span class="badge">● Ready to learn</span>
+            </header>
+
+            <section class="hero">
+                <p class="eyebrow">YOUR PERSONAL STUDY PARTNER</p>
+                <h1>Learn smarter.<br><span>Understand deeply.</span></h1>
+                <p>Ask questions from your AI/ML PDF notes
+                   and get answers with source pages.</p>
+            </section>
+
+            <section class="chat-card">
+                <div class="chat-header">
+                    <div class="avatar">✦</div>
+                    <div>
+                        <strong>AI/ML Study Assistant</strong>
+                        <p class="muted">Answers based on your notes</p>
+                    </div>
+                    <button id="clearBtn" class="clear-btn">
+                        New chat
+                    </button>
+                </div>
+
+                <div id="chat">
+                    <div class="welcome">
+                        <h2>What are you studying today?</h2>
+                        <p>Choose a question or type your own.</p>
+
+                        <button class="suggestion">
+                            Explain linear regression
+                        </button>
+                        <button class="suggestion">
+                            What is a decision tree?
+                        </button>
+                        <button class="suggestion">
+                            Explain confusion matrix
+                        </button>
+                    </div>
+                </div>
+
+                <form id="questionForm">
+                    <textarea id="question"
+                        placeholder="Ask a question from your notes..."
+                        rows="2" required></textarea>
+
+                    <div class="form-bottom">
+                        <small>Enter to ask · Shift+Enter for a new line</small>
+                        <button id="sendBtn" type="submit">
+                            Ask question ↑
+                        </button>
+                    </div>
+                </form>
+
+                <p class="footnote">
+                    AI-generated answers · Check your original PDF notes
+                </p>
+            </section>
+
+            <footer>AI/ML Study Assistant · Powered by RAG</footer>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
