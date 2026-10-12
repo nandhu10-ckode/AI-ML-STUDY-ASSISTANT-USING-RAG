@@ -4,88 +4,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AI/ML Study Assistant</title>
+
+    <!-- CSS design -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <div class="layout">
+
+        <!-- Sidebar -->
         <aside class="sidebar">
             <h2>🤖 StudyMate AI</h2>
+
             <p class="muted">YOUR STUDY WORKSPACE</p>
-            <div class="nav active">✦ Study Assistant</div>
+
+            <div class="nav active">
+                ✦ Study Assistant
+            </div>
 
             <div class="side-info">
                 <h4>PDF-powered learning</h4>
                 <p>Ask questions from your AI/ML notes.</p>
             </div>
 
-            <p class="side-bottom">● AI Assistant</p>
+            <p class="side-bottom" id="backendStatus">
+                ● Connecting to AI Assistant...
+            </p>
         </aside>
 
+        <!-- Main content -->
         <main class="main">
+
+            <!-- Top navigation -->
             <header class="topbar">
                 <span>Workspace / Study Assistant</span>
-                <span class="badge">● Ready to learn</span>
+                <span class="badge" id="statusBadge">
+                    ● Connecting...
+                </span>
             </header>
 
+            <!-- Hero section -->
             <section class="hero">
-                <p class="eyebrow">YOUR PERSONAL STUDY PARTNER</p>
-                <h1>Learn smarter.<br><span>Understand deeply.</span></h1>
-                <p>Ask questions from your AI/ML PDF notes
-                   and get answers with source pages.</p>
+                <p class="eyebrow">
+                    YOUR PERSONAL STUDY PARTNER
+                </p>
+
+                <h1>
+                    Learn smarter.<br>
+                    <span>Understand deeply.</span>
+                </h1>
+
+                <p>
+                    Ask questions from your AI/ML PDF notes
+                    and get answers with source pages.
+                </p>
             </section>
 
+            <!-- Chat card -->
             <section class="chat-card">
+
+                <!-- Chat header -->
                 <div class="chat-header">
                     <div class="avatar">✦</div>
-                    <div>
+
+                    <div class="assistant-info">
                         <strong>AI/ML Study Assistant</strong>
-                        <p class="muted">Answers based on your notes</p>
+                        <p class="muted">
+                            Answers based on your notes
+                        </p>
                     </div>
-                    <button id="clearBtn" class="clear-btn">
+
+                    <button
+                        id="clearBtn"
+                        class="clear-btn"
+                        type="button">
                         New chat
                     </button>
                 </div>
 
-                <div id="chat">
-                    <div class="welcome">
-                        <h2>What are you studying today?</h2>
-                        <p>Choose a question or type your own.</p>
+                <!-- Chat messages appear here -->
+                <div id="chat" aria-live="polite">
 
-                        <button class="suggestion">
+                    <div class="welcome" id="welcome">
+                        <h2>What are you studying today?</h2>
+
+                        <p>
+                            Choose a question or type your own.
+                        </p>
+
+                        <button
+                            class="suggestion"
+                            type="button">
                             Explain linear regression
                         </button>
-                        <button class="suggestion">
+
+                        <button
+                            class="suggestion"
+                            type="button">
                             What is a decision tree?
                         </button>
-                        <button class="suggestion">
+
+                        <button
+                            class="suggestion"
+                            type="button">
                             Explain confusion matrix
                         </button>
                     </div>
+
                 </div>
 
+                <!-- Question form -->
                 <form id="questionForm">
-                    <textarea id="question"
+
+                    <textarea
+                        id="question"
+                        name="question"
                         placeholder="Ask a question from your notes..."
-                        rows="2" required></textarea>
+                        rows="2"
+                        maxlength="5000"
+                        required
+                        aria-label="Ask a question">
+                    </textarea>
 
                     <div class="form-bottom">
-                        <small>Enter to ask · Shift+Enter for a new line</small>
-                        <button id="sendBtn" type="submit">
+                        <small>
+                            Enter to ask · Shift+Enter for a new line
+                        </small>
+
+                        <button
+                            id="sendBtn"
+                            type="submit">
                             Ask question ↑
                         </button>
                     </div>
+
                 </form>
+
+                <!-- Loading indicator -->
+                <p id="loading" hidden>
+                    Searching your PDF notes and generating an answer...
+                </p>
+
+                <!-- Error message -->
+                <p
+                    id="errorMessage"
+                    class="error-message"
+                    role="alert">
+                </p>
 
                 <p class="footnote">
                     AI-generated answers · Check your original PDF notes
                 </p>
+
             </section>
 
-            <footer>AI/ML Study Assistant · Powered by RAG</footer>
+            <!-- Footer -->
+            <footer>
+                AI/ML Study Assistant · Powered by RAG
+            </footer>
+
         </main>
     </div>
 
-    <script src="/static/script.js"></script>
+    <!-- JavaScript connects the UI to server.py -->
+    <script src="/static/script.js" defer></script>
+
 </body>
 </html>

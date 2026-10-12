@@ -1,14 +1,60 @@
 
+/* =========================================
+   1. GLOBAL STYLES
+========================================= */
+
 * {
     box-sizing: border-box;
+}
+
+:root {
+    --primary: #6555df;
+    --primary-dark: #5041c5;
+    --primary-light: #eeebff;
+    --background: #f5f6fc;
+    --text: #22243a;
+    --muted: #85889a;
+    --border: #e8e8f0;
+    --white: #ffffff;
+    --success: #278961;
+    --error: #b42318;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
-    background: #f5f6fc;
-    color: #22243a;
+    background: var(--background);
+    color: var(--text);
 }
+
+button,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================
+   2. MAIN LAYOUT
+========================================= */
 
 .layout {
     display: flex;
@@ -17,9 +63,10 @@ body {
 
 .sidebar {
     width: 245px;
-    background: white;
+    min-height: 100vh;
+    background: var(--white);
     padding: 28px 20px;
-    border-right: 1px solid #e8e8f0;
+    border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -27,23 +74,29 @@ body {
 
 .sidebar h2 {
     font-size: 21px;
-    color: #6555df;
+    color: var(--primary);
+    margin: 0 0 12px;
 }
 
 .muted {
-    color: #85889a;
+    color: var(--muted);
     font-size: 12px;
+}
+
+.sidebar > .muted {
+    letter-spacing: 1px;
 }
 
 .nav {
     padding: 14px;
     border-radius: 10px;
     margin-top: 15px;
+    font-size: 14px;
 }
 
 .nav.active {
-    background: #eeebff;
-    color: #5d4cdb;
+    background: var(--primary-light);
+    color: var(--primary-dark);
     font-weight: bold;
 }
 
@@ -56,10 +109,21 @@ body {
     font-size: 13px;
 }
 
+.side-info h4 {
+    margin: 0 0 8px;
+}
+
+.side-info p {
+    margin: 0;
+    color: #77758c;
+}
+
 .side-bottom {
     margin-top: auto;
-    color: #279d76;
+    padding-top: 25px;
+    color: var(--success);
     font-size: 13px;
+    overflow-wrap: anywhere;
 }
 
 .main {
@@ -67,23 +131,39 @@ body {
     min-width: 0;
 }
 
+
+/* =========================================
+   3. TOP NAVIGATION
+========================================= */
+
 .topbar {
-    height: 70px;
-    padding: 20px 5%;
+    min-height: 70px;
+    padding: 18px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
-    border-bottom: 1px solid #e8e8f0;
+    gap: 12px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
     font-size: 13px;
 }
 
 .badge {
     background: #eaf9f2;
-    color: #278961;
+    color: var(--success);
     border-radius: 30px;
     padding: 9px 13px;
+    white-space: nowrap;
 }
+
+#statusBadge {
+    font-size: 12px;
+}
+
+
+/* =========================================
+   4. HERO SECTION
+========================================= */
 
 .hero {
     text-align: center;
@@ -91,7 +171,7 @@ body {
 }
 
 .eyebrow {
-    color: #6555df;
+    color: var(--primary);
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -104,7 +184,7 @@ body {
 }
 
 .hero h1 span {
-    color: #6555df;
+    color: var(--primary);
 }
 
 .hero > p:last-child {
@@ -113,10 +193,15 @@ body {
     font-size: 14px;
 }
 
+
+/* =========================================
+   5. CHAT CARD
+========================================= */
+
 .chat-card {
     width: min(850px, 92%);
     margin: 0 auto;
-    background: white;
+    background: var(--white);
     border: 1px solid #e7e8f0;
     border-radius: 17px;
     box-shadow: 0 12px 35px #33334b0a;
@@ -136,9 +221,10 @@ body {
     height: 40px;
     display: grid;
     place-items: center;
+    flex-shrink: 0;
     border-radius: 12px;
-    background: #6555df;
-    color: white;
+    background: var(--primary);
+    color: var(--white);
     font-size: 22px;
 }
 
@@ -150,20 +236,35 @@ body {
     margin: 5px 0 0;
 }
 
+.assistant-info {
+    min-width: 0;
+}
+
 .clear-btn {
     margin-left: auto;
-    background: white;
-    color: #6555df;
+    flex-shrink: 0;
+    background: var(--white);
+    color: var(--primary);
     border: 1px solid #dedbf9;
     border-radius: 8px;
     padding: 10px 13px;
 }
+
+.clear-btn:hover {
+    background: var(--primary-light);
+}
+
+
+/* =========================================
+   6. CHAT AREA
+========================================= */
 
 #chat {
     min-height: 250px;
     max-height: 450px;
     overflow-y: auto;
     padding: 25px;
+    scroll-behavior: smooth;
 }
 
 .welcome {
@@ -176,31 +277,34 @@ body {
 }
 
 .welcome p {
-    color: #85889a;
+    color: var(--muted);
     font-size: 13px;
     margin-bottom: 22px;
 }
 
-button {
-    cursor: pointer;
-    font-family: inherit;
-}
-
 .suggestion {
-    background: white;
+    background: var(--white);
     border: 1px solid #e2defc;
     color: #5e50c8;
     padding: 10px 13px;
     border-radius: 30px;
     margin: 4px;
+    font-size: 13px;
 }
 
 .suggestion:hover {
     background: #f2efff;
+    transform: translateY(-1px);
 }
+
+
+/* =========================================
+   7. CHAT MESSAGES
+========================================= */
 
 .message {
     margin-bottom: 22px;
+    max-width: 100%;
 }
 
 .message .label {
@@ -219,7 +323,8 @@ button {
 }
 
 .message.user .bubble {
-    background: #eeebff;
+    background: var(--primary-light);
+    border: 1px solid #e4dfff;
 }
 
 .message.assistant .bubble {
@@ -227,38 +332,67 @@ button {
     border: 1px solid #ececf3;
 }
 
+
+/* =========================================
+   8. PDF SOURCES
+========================================= */
+
 .sources {
     margin-top: 12px;
+    padding: 12px;
+    background: #faf9ff;
+    border: 1px solid #ece8ff;
+    border-radius: 10px;
     font-size: 12px;
     color: #5e50c8;
+    overflow-wrap: anywhere;
 }
 
 .source-item {
     display: block;
-    margin-top: 7px;
+    margin-top: 8px;
+    line-height: 1.5;
     overflow-wrap: anywhere;
 }
+
+
+/* =========================================
+   9. QUESTION FORM
+========================================= */
 
 #questionForm {
     margin: 0 18px;
     border: 1px solid #dedfea;
     border-radius: 12px;
     padding: 14px;
+    background: var(--white);
 }
 
 #questionForm:focus-within {
     border-color: #8e82ef;
+    box-shadow: 0 0 0 3px #6555df12;
 }
 
 textarea {
+    display: block;
     width: 100%;
     resize: vertical;
     min-height: 55px;
     max-height: 150px;
     border: 0;
     outline: none;
-    font-family: inherit;
+    background: transparent;
+    color: var(--text);
     font-size: 14px;
+    line-height: 1.6;
+}
+
+textarea::placeholder {
+    color: #9296a5;
+}
+
+textarea:focus-visible {
+    outline: none;
 }
 
 .form-bottom {
@@ -266,6 +400,7 @@ textarea {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .form-bottom small {
@@ -274,16 +409,17 @@ textarea {
 }
 
 #sendBtn {
-    background: #6555df;
-    color: white;
+    background: var(--primary);
+    color: var(--white);
     border: 0;
     border-radius: 9px;
     padding: 12px 15px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 #sendBtn:hover {
-    background: #5041c5;
+    background: var(--primary-dark);
 }
 
 #sendBtn:disabled {
@@ -291,10 +427,37 @@ textarea {
     cursor: wait;
 }
 
-.footnote, footer {
+
+/* =========================================
+   10. LOADING AND ERROR MESSAGES
+========================================= */
+
+#loading {
+    margin: 15px 22px;
+    color: var(--primary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.error-message {
+    margin: 12px 22px;
+    color: var(--error);
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   11. FOOTER
+========================================= */
+
+.footnote,
+footer {
     text-align: center;
     color: #999dad;
     font-size: 11px;
+    line-height: 1.6;
 }
 
 .footnote {
@@ -305,18 +468,33 @@ footer {
     padding: 24px 10px;
 }
 
+
+/* =========================================
+   12. TABLET AND MOBILE
+========================================= */
+
 @media (max-width: 760px) {
     .sidebar {
         display: none;
     }
 
     .topbar {
+        min-height: 60px;
         padding: 15px;
         font-size: 11px;
     }
 
+    .badge {
+        padding: 7px 9px;
+        font-size: 10px;
+    }
+
     .hero {
         padding: 32px 15px 24px;
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 7vw, 40px);
     }
 
     .chat-card {
@@ -325,9 +503,30 @@ footer {
 
     .chat-header {
         padding: 14px;
+        gap: 10px;
+    }
+
+    .chat-header strong {
+        font-size: 12px;
+    }
+
+    .chat-header .muted {
+        font-size: 11px;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .clear-btn {
+        padding: 9px;
+        font-size: 12px;
     }
 
     #chat {
+        min-height: 220px;
+        max-height: 400px;
         padding: 16px;
     }
 
@@ -335,8 +534,64 @@ footer {
         font-size: 12px;
     }
 
+    #questionForm {
+        margin: 0 10px;
+        padding: 11px;
+    }
+
     .form-bottom {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    #sendBtn {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   13. SMALL MOBILE SCREENS
+========================================= */
+
+@media (max-width: 420px) {
+    .topbar > span:first-child {
+        max-width: 45%;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .hero > p:last-child {
+        font-size: 13px;
+    }
+
+    .chat-header {
+        flex-wrap: wrap;
+    }
+
+    .clear-btn {
+        margin-left: auto;
+    }
+
+    .welcome h2 {
+        font-size: 17px;
+    }
+
+    .suggestion {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+        white-space: normal;
+    }
+
+    .message .bubble {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .form-bottom small {
+        font-size: 10px;
     }
 }
